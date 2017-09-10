@@ -94,15 +94,15 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         self.driver = config['driver']
         if self.driver == 'ssd1306':
             self.device = ssd1306(serial)
-        elif self.driver == 'ssd1322'
+        elif self.driver == 'ssd1322':
             self.device = ssd1322(serial)
-        elif self.driver == 'ssd1325'
+        elif self.driver == 'ssd1325':
             self.device = ssd1325(serial)
-        elif self.driver == 'ssd1331'    
+        elif self.driver == 'ssd1331':    
             self.device = ssd1331(serial)
-        elif self.driver == 'sh1106'
+        elif self.driver == 'sh1106':
             self.device = sh1106(serial)
-        else
+        else:
             self.device = ssd1306(serial)
         
         self.font = self.make_font('Vera.ttf', 26)
