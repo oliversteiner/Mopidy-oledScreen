@@ -44,11 +44,12 @@ Mopidy-oledScreen to your Mopidy configuration file::
 	address = 0x3c
 	driver = ssd1306
 
-The following configuration values are avialble:
-- oledScreen/enabled: if the screen should be used or not
-- oledScreen/bus: the i2c bus interface the oled screen is connected to (the bus number you use in i2cdetect -y busNumber)
-- oledScreen/address: the address the oled screen listens to (the output from i2cdetect -y busNumber)
-- oled/driver: the luma oled driver name, valid values are: ssd1306 / ssd1322 / ssd1325 / ssd1331 / sh1106, currently only tested on ssd1306 via i2c
+The following configuration values are available:
+
+- ``oledScreen/enabled``: if the screen should be used or not, defaults to true
+- ``oledScreen/bus``: the i2c bus interface the oled screen is connected to (the bus number you use in i2cdetect -y busNumber), defaults to 2
+- ``oledScreen/address??: the address the oled screen listens to (the output from i2cdetect -y busNumber) defaults to 0x3c
+- ``oled/driver``: the luma oled driver name, valid values are: ssd1306 / ssd1322 / ssd1325 / ssd1331 / sh1106, currently only tested on ssd1306 via i2c, defaults to ssd1306
 
 Project resources
 =================
