@@ -3,7 +3,9 @@ include LICENSE
 include MANIFEST.in
 include README.rst
 include tox.ini
-recursive-include mopidy_oled096/fonts *
+recursive-include mopidy_oledScreen/fonts *
+include mopidy_oledScreen/ext.conf
+
 
 recursive-include tests *.py
 
