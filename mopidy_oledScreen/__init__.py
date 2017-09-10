@@ -31,5 +31,6 @@ class Extension(ext.Extension):
 
     def setup(self, registry):
         
-        from .frontend import OledScreen
-        registry.add('frontend', OledScreen)
+        from .frontend import oledScreen
+        registry.add('frontend', oledScreen)
+        
