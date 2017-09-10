@@ -4,5 +4,7 @@ include MANIFEST.in
 include README.rst
 include mopidy_oledScreen/ext.conf
 include tox.ini
+recursive-include mopidy_oledScreen/fonts *
 
 recursive-include tests *.py
+
