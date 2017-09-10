@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import logging
 import traceback
 
@@ -16,7 +17,7 @@ import threading
 import textwrap
 import pykka
 
-from __future__ import unicode_literals
+
 
 
 logger = logging.getLogger(__name__)
@@ -83,27 +84,27 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         return ImageFont.truetype(font_path, size)
 
     def __init__(self, config, core):
-        super(OledScreen, self).__init__()
+        super(oledScreen, self).__init__()
         self.menu = False
         self.core = core
         self.config = config
-        if config['bus'] and config['address']:
-            self.serial = i2c(bus=SMBus(config['bus']), address=config['address'])
-        else    
+        if config['oledScreen']['bus'] and config['oledScreen']['address']:
+            self.serial = i2c(bus=SMBus(config['oledScreen']['bus']), address=config['oledScreen']['address'])
+        else:    
             self.serial = i2c(bus=SMBus(2), address=0x3c)
-        self.driver = config['driver']
+        self.driver = config['oledScreen']['driver']
         if self.driver == 'ssd1306':
-            self.device = ssd1306(serial)
+            self.device = ssd1306(self.serial)
         elif self.driver == 'ssd1322':
-            self.device = ssd1322(serial)
+            self.device = ssd1322(self.serial)
         elif self.driver == 'ssd1325':
-            self.device = ssd1325(serial)
+            self.device = ssd1325(self.serial)
         elif self.driver == 'ssd1331':    
-            self.device = ssd1331(serial)
+            self.device = ssd1331(self.serial)
         elif self.driver == 'sh1106':
-            self.device = sh1106(serial)
+            self.device = sh1106(self.serial)
         else:
-            self.device = ssd1306(serial)
+            self.device = ssd1306(self.serial)
         
         self.font = self.make_font('Vera.ttf', 26)
         self.fontSmall = self.make_font('Vera.ttf', 15)
