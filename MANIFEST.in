@@ -6,6 +6,7 @@ include README.rst
 include tox.ini
 recursive-include mopidy_oledScreen *
 recursive-include mopidy_oledScreen/fonts *
+recursive-include mopidy_oledScreen/images *
 
 recursive-include tests *.py
 

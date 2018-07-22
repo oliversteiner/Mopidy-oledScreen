@@ -8,10 +8,12 @@ from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
 from luma.oled.device import ssd1306, ssd1322, ssd1325, ssd1331, sh1106
 from luma.core.virtual import viewport
+from luma.core.sprite_system import framerate_regulator
+
 
 from smbus import SMBus
 import time,os
-from PIL import ImageFont
+from PIL import ImageFont, Image, ImageSequence
 from threading import Thread
 import threading
 import textwrap
@@ -88,6 +90,8 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         self.menu = False
         self.core = core
         self.config = config
+        
+        
         if config['oledScreen']['bus'] and config['oledScreen']['address']:
             self.serial = i2c(bus=SMBus(config['oledScreen']['bus']), address=config['oledScreen']['address'])
         else:    
@@ -108,7 +112,7 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         
         self.font = self.make_font('Vera.ttf', 26)
         self.fontSmall = self.make_font('Vera.ttf', 15)
-
+        self.set_image('radio.png')
 
 
     def set_text_on_display(self, text, scrolling, speed):
@@ -116,6 +120,17 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         self.stop_display()
         self.displayThreadObj = DisplayThread(self.device,text,self.font, self.fontSmall,scrolling,speed)
         self.displayThreadObj.start()
+    
+    def set_image(self, image):
+        img_path = os.path.abspath(os.path.join(os.path.dirname(__file__),'images', image))
+        imageLoaded = Image.open(img_path)
+        size = [min(*self.device.size)] * 2
+        posn = ((self.device.width - size[0]) // 2, self.device.height - size[1])
+
+        
+        background = Image.new("RGB", self.device.size, "black")
+        background.paste(imageLoaded.resize(size, resample=Image.LANCZOS), posn)
+        self.device.display(background.convert(self.device.mode))
 
     def stop_display(self):
         #stop displaying text on display by killing the thread (if alive) and clearing the screen
