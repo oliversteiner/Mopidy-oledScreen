@@ -112,7 +112,7 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         
         self.font = self.make_font('Vera.ttf', 26)
         self.fontSmall = self.make_font('Vera.ttf', 15)
-        self.set_image('radio.png')
+        self.set_image('radio.gif')
 
 
     def set_text_on_display(self, text, scrolling, speed):
@@ -126,9 +126,8 @@ class oledScreen(pykka.ThreadingActor, core.CoreListener):
         imageLoaded = Image.open(img_path)
         size = [min(*self.device.size)] * 2
         posn = ((self.device.width - size[0]) // 2, self.device.height - size[1])
-
-        
-        background = Image.new("RGB", self.device.size, "black")
+            
+        background = Image.new(self.device.mode, self.device.size, "black")
         background.paste(imageLoaded.resize(size, resample=Image.LANCZOS), posn)
         self.device.display(background.convert(self.device.mode))
 
