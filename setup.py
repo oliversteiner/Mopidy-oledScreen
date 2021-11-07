@@ -14,7 +14,7 @@ def get_version(filename):
 setup(
     name='Mopidy-oledScreen',
     version=get_version('mopidy_oledScreen/__init__.py'),
-    url='https://github.com/tulip85/mopidy-oledscreen',
+    url='https://github.com/oliversteiner/mopidy-oledscreen',
     license='MIT',
     author='tulip85',
     author_email='',

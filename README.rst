@@ -1,18 +1,12 @@
+v.1.0
+
+Forked from
+https://github.com/oliversteiner/Mopidy-oledScreen
+
 ****************************
 Mopidy-oledScreen
 ****************************
 
-.. image:: https://img.shields.io/pypi/v/Mopidy-oledScreen.svg?style=flat
-    :target: https://pypi.python.org/pypi/Mopidy-oledScreen/
-    :alt: Latest PyPI version
-
-.. image:: https://img.shields.io/travis/tulip85/mopidy_oledScreen/master.svg?style=flat
-    :target: https://travis-ci.org/tulip85/mopidy_oledScreen
-    :alt: Travis CI build status
-
-.. image:: https://img.shields.io/coveralls/tulip85/mopidy_oledScreen/master.svg?style=flat
-   :target: https://coveralls.io/r/tulip85/mopidy_oledScreen
-   :alt: Test coverage
 
 Mopidy extension to display currently playing song to a small oled screen (currently only tested on ssd1306 via i2c)
 
@@ -25,11 +19,6 @@ Installation
 First install the LUMA oled library: https://github.com/rm-hull/luma.oled, installation instructions: https://luma-oled.readthedocs.io/en/latest/install.html
 
 Install by running::
-
-    sudo pip install Mopidy-oledScreen
-
-Or, if available, install the Debian/Ubuntu package from `apt.mopidy.com
-<http://apt.mopidy.com/>`_.
 
 
 Configuration
@@ -51,17 +40,3 @@ The following configuration values are available:
 - ``oledScreen/address``: the address the oled screen listens to (the output from i2cdetect -y busNumber) defaults to 0x3c
 - ``oled/driver``: the luma oled driver name, valid values are: ssd1306 / ssd1322 / ssd1325 / ssd1331 / sh1106, currently only tested on ssd1306 via i2c, defaults to ssd1306
 
-Project resources
-=================
-
-- `Source code <https://github.com/tulip85/mopidy-oledscreen>`_
-- `Issue tracker <https://github.com/tulip85/mopidy-oledscreen/issues>`_
-
-
-Changelog
-=========
-
-v0.1.0 (UNRELEASED)
-----------------------------------------
-
-- Initial release.
